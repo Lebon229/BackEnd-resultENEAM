@@ -10,7 +10,7 @@ class EtudiantController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+       // $this->middleware('auth:api');
     }
 
     public function index()
@@ -26,7 +26,6 @@ class EtudiantController extends Controller
     {
         $request->validate([
             'matricule' => 'required|string|max:255',
-            'id' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
             'prenoms' => 'required|string|max:255',
             'sexe' => 'required|string|max:255',
@@ -34,7 +33,6 @@ class EtudiantController extends Controller
 
         $etudiant = Etudiant::create([
             'matricule' => $request->matricule,
-            'id' => $request->id,
             'nom' => $request->nom,
             'prenoms' => $request->prenoms,
             'sexe' => $request->sexe,
@@ -60,19 +58,23 @@ class EtudiantController extends Controller
     {
         $request->validate([
             'matricule' => 'required|string|max:255',
-            'id' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
             'prenoms' => 'required|string|max:255',
             'sexe' => 'required|string|max:255',
         ]);
 
-        $etudiant = Etudiant::find($id);
+        $etudiant = DB::table('etudiants')->where('matricule',$id)->update([
+            'nom'=> $request->nom,
+            'prenoms'=>$request->prenoms,
+            'sexe'=>$request->sexe,
+        ]);
+     /*   $etudiant = Etudiant::find($id);
         $etudiant->matricule = $request->matricule;
         $etudiant->nom = $request->nom;
         $etudiant->id = $request->id;
         $etudiant->prenoms = $request->prenoms;
         $etudiant->sexe = $request->sexe;
-        $etudiant->save();
+        $etudiant->save();*/
 
         return response()->json([
             'status' => 'success',

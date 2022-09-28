@@ -9,5 +9,5 @@ class UE extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nomUe', 'code','id'];
+    protected $fillable = ['nomUe', 'code'];
 }

@@ -9,5 +9,5 @@ class Etudiant extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['matricule', 'nom', 'prenoms', 'sexe','id'];
+    protected $fillable = ['matricule', 'nom', 'prenoms', 'sexe'];
 }

@@ -25,10 +25,14 @@ class FiliereController extends Controller
     {
         $request->validate([
             'nomFiliere' => 'required|string|max:255',
+            'matricule_etud' => 'required|string|max:5',       
+
         ]);
 
         $filiere = Filiere::create([
             'nomFiliere' => $request->nomFiliere,
+            'matricule_etud' => $request->input('matricule_etud'),
+
         ]);
 
         return response()->json([
@@ -51,10 +55,13 @@ class FiliereController extends Controller
     {
         $request->validate([
             'nomFiliere' => 'required|string|max:255',
+            'matricule_etud' => 'required|string|max:5',       
+
         ]);
 
         $filiere = Filiere::find($id);
         $filiere->nomFiliere = $request->nomFiliere;
+        $note->matricule_etud = $request->matricule_etud;
         $filiere->save();
 
         return response()->json([

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Filiere extends Model
 {
     use HasFactory;
-    protected $fillable = ['nomFiliere'];
+    protected $fillable = ['nomFiliere', 'matricule_etud'];
 }

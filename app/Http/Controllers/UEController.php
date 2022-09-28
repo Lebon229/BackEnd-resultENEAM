@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UE;
+use Illuminate\Support\Facades\DB;
 
 class UEController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+       // $this->middleware('auth:api');
     }
 
     public function index()
@@ -26,13 +27,13 @@ class UEController extends Controller
         $request->validate([
             'nomUe' => 'required|string|max:255',
             'code' => 'required|string|max:255',
-            'id' => 'required|string|max:255',
+            //'id' => 'required|string|max:255',
         ]);
 
         $ue = UE::create([
             'nomUe' => $request->nomUe,
             'code' => $request->code,
-            'id' => $request->id,
+            //'id' => $request->id,
 
         ]);
 
@@ -57,15 +58,19 @@ class UEController extends Controller
         $request->validate([
             'nomUe' => 'required|string|max:255',
             'code' => 'required|string|max:255',
-            'id' => 'required|string|max:255',
+           // 'id' => 'required|string|max:255',
 
         ]);
 
-        $ue = UE::find($id);
+        $ue = DB::table('u_e_s')->where('code',$id)->update([
+            'nomUe'=> $request->nomUe,
+        ]);
+
+       /* $ue = UE::find($id);
         $ue->nomUe = $request->nomUe;
         $ue->id = $request->id;
         $ue->code = $request->code;
-        $ue->save();
+        $ue->save();*/
 
         return response()->json([
             'status' => 'success',

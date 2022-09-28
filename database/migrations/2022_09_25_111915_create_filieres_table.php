@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
             $table->string('nomFiliere');
+            $table->string('matricule_etud');
+            $table->foreign('matricule_etud')->references('matricule')->on('etudiants')->onDelete('cascade');
             $table->timestamps();
         });
     }

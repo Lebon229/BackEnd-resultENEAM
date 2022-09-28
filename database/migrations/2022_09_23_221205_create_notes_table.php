@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('note');
             $table->string('code_ue');
             $table->foreign('code_ue')->references('code')->on('u_e_s')->onDelete('cascade');
-            $table->unsignedBigInteger('matricule_etud');
+            $table->string('matricule_etud');
             $table->foreign('matricule_etud')->references('matricule')->on('etudiants')->onDelete('cascade');
             $table->timestamps();
         });

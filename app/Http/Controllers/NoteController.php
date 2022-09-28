@@ -9,7 +9,7 @@ class NoteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        //$this->middleware('auth:api');
     }
 
     public function index()
@@ -52,7 +52,7 @@ class NoteController extends Controller
         $request->validate([
             'note' => 'required|string|max:5',
             'code_ue' => 'required|string|max:5',
-            'matricule_etud' => 'required|string|max:5',       
+            'matricule_etud' => 'required|string|max:255',       
         ]);
 
         $note = Note::find($id);
