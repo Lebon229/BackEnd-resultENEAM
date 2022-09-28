@@ -50,7 +50,7 @@ class EtudiantController extends Controller
         $etudiant = Etudiant::find($id);
         return response()->json([
             'status' => 'success',
-            'etudiant' => $etudiant,
+            //'etudiant' => $etudiant,
         ]);
     }
 
