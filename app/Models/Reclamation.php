@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Reclamation extends Model
 {
     use HasFactory;
-    protected $fillable = ['type','matriculeEtud','nomEtud','preEtud','annee','filliere','ue','fiche','quittance','carte'];
+    protected $fillable = ['type','matricule_etud','annee','filliere','ue','fiche','quittance','carte','valider','email'];
 
 }

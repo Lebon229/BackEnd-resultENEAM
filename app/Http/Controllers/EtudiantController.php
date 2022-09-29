@@ -29,6 +29,8 @@ class EtudiantController extends Controller
             'nom' => 'required|string|max:255',
             'prenoms' => 'required|string|max:255',
             'sexe' => 'required|string|max:255',
+            'filiere' => 'required|string|max:255',
+
         ]);
 
         $etudiant = Etudiant::create([
@@ -36,6 +38,8 @@ class EtudiantController extends Controller
             'nom' => $request->nom,
             'prenoms' => $request->prenoms,
             'sexe' => $request->sexe,
+            'filiere' => $request->filiere,
+
         ]);
 
         return response()->json([
@@ -61,12 +65,16 @@ class EtudiantController extends Controller
             'nom' => 'required|string|max:255',
             'prenoms' => 'required|string|max:255',
             'sexe' => 'required|string|max:255',
+            'filiere' => 'required|string|max:255',
+
         ]);
 
         $etudiant = DB::table('etudiants')->where('matricule',$id)->update([
             'nom'=> $request->nom,
             'prenoms'=>$request->prenoms,
             'sexe'=>$request->sexe,
+            'filiere'=>$request->filiere,
+
         ]);
      /*   $etudiant = Etudiant::find($id);
         $etudiant->matricule = $request->matricule;

@@ -9,7 +9,7 @@ class ReclamationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+       // $this->middleware('auth:api');
     }
 
     public function index()
@@ -25,22 +25,24 @@ class ReclamationController extends Controller
     {
         $request->validate([
             'type' => 'required|string|max:255',
-            'matriculeEtud' => 'required|string|max:255',
-            'nomEtud' => 'required|string|max:255',
-            'preEtud' => 'required|string|max:255',
+            'matricule_etud' => 'required|string|max:255',
+            //'nomEtud' => 'required|string|max:255',
+            //'preEtud' => 'required|string|max:255',
             'annee' => 'required|string|max:255',
             'filliere' => 'required|string|max:255',
             'ue' => 'required|string|max:255',
             'fiche' => 'required|string|max:255',
             'quittance' => 'required|string|max:255',
             'carte' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+
         ]);
 
         $reclamation = Reclamation::create([
             'type' => $request->type,
-            'matriculeEtud' => $request->matriculeEtud,
-            'nomEtud' => $request->nomEtud,
-            'preEtud' => $request->preEtud,
+            'matricule_etud' => $request->matricule_etud,
+            //'nomEtud' => $request->nomEtud,
+            'email' => $request->email,
             'annee' => $request->annee,
             'filliere' => $request->filliere,
             'ue' => $request->ue,
@@ -70,9 +72,9 @@ class ReclamationController extends Controller
     {
         $request->validate([
             'type' => 'required|string|max:255',
-            'matriculeEtud' => 'required|string|max:255',
-            'nomEtud' => 'required|string|max:255',
-            'preEtud' => 'required|string|max:255',
+            'matricule_etud' => 'required|string|max:255',
+           // 'nomEtud' => 'required|string|max:255',
+           'email' => 'required|string|max:255',
             'annee' => 'required|string|max:255',
             'filliere' => 'required|string|max:255',
             'ue' => 'required|string|max:255',
@@ -84,9 +86,9 @@ class ReclamationController extends Controller
 
         $reclamation = Reclamation::find($id);
         $reclamation->type = $request->type;
-        $reclamation->matriculeEtud = $request->matriculeEtud;
-        $reclamation->nomEtud = $request->nomEtud;
-        $reclamation->preEtud = $request->preEtud;
+        $reclamation->matricule_etud = $request->matricule_etud;
+        //$reclamation->nomEtud = $request->nomEtud;
+        $reclamation->email = $request->email;
         $reclamation->annee = $request->anpreEtudnee;
         $reclamation->filliere = $request->filliere;
         $reclamation->ue = $request->ue;
@@ -110,6 +112,15 @@ class ReclamationController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Reclamation bien supprimer',
+            'reclamation' => $reclamation,
+        ]);
+    }
+    public function reclamAttente($id)
+    {
+        $reclamation = DB::table('reclamations')->where('valider',null)->join("etudiants","etudiants.matricule","reclamations.matricule_etud")->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Reclamations en attente',
             'reclamation' => $reclamation,
         ]);
     }

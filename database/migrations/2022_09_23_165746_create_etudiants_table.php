@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenoms');
             $table->string('sexe');
+            $table->string('filiere');
             $table->timestamps();
         });
     }
