@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('quittance');
             $table->string('email');
             $table->string('carte');
-            $table->string('valider')->nullable();            
+            $table->string('valider')->nullable();   
+            $table->unique(['matricule_etud', 'ue']);         
             $table->timestamps();
         });
     }

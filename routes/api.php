@@ -69,7 +69,7 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::get('/reclamation/{id}', [ReclamationController::class, 'show']);
     Route::put('/reclamation/{id}', [ReclamationController::class, 'update']);
     Route::delete('/reclamation/{id}', [ReclamationController::class, 'destroy']);
-    Route::get('/attente/{id}', [ReclamationController::class, 'reclamAttente']); 
+    Route::get('/attente', [ReclamationController::class, 'reclamAttente']); 
 });
 
 

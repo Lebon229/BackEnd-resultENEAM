@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
+use Illuminate\Support\Facades\DB;
+
 
 class ReclamationController extends Controller
 {
@@ -115,7 +117,7 @@ class ReclamationController extends Controller
             'reclamation' => $reclamation,
         ]);
     }
-    public function reclamAttente($id)
+    public function reclamAttente()
     {
         $reclamation = DB::table('reclamations')->where('valider',null)->join("etudiants","etudiants.matricule","reclamations.matricule_etud")->get();
         return response()->json([

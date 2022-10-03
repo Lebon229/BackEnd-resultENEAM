@@ -104,7 +104,7 @@ class EtudiantController extends Controller
     }
     public function display($id)
     {
-        $etudiant = DB::table('notes')->where('matricule_etud',$id)->join("etudiants","etudiants.matricule","notes.matricule_etud")->get();
+        $etudiant = DB::table('notes')->where('matricule_etud',$id)->join("etudiants","etudiants.matricule","notes.matricule_etud")->join("u_e_s","u_e_s.code","notes.code_ue")->get();
 
         return response()->json([
             'status' => 'success',
